@@ -25,7 +25,7 @@ c["children"] += [f, g, h]
 h["children"] += [m]
 d["children"] += [i, j]
 
-def breadth_first_print(root, fn):
+def breadth_first(root, fn):
   q = [root]
 
   while q:
@@ -33,4 +33,38 @@ def breadth_first_print(root, fn):
     fn(current_node["value"])
     q += current_node["children"]
 
-breadth_first_print(a, print)
+def depth_first_preorder(root, fn):
+  s = [root]
+
+  while s:
+    current_node = s.pop(0)
+    fn(current_node["value"])
+    s = current_node["children"] + s
+
+def depth_first_preorder_r(node, fn):
+  fn(node["value"])
+
+  if len(node["children"]):
+    for child in node["children"]:
+      depth_first_preorder_r(child, fn)
+
+def depth_first_postorder(root, fn):
+  stack = [root]
+  visited = []
+
+  while stack:
+    current_node = stack[-1]
+    if len(current_node["children"]) and current_node not in visited:
+      stack += list(reversed(current_node["children"]))
+      visited.append(current_node)
+    else:
+      fn(stack.pop()["value"])
+
+def depth_first_postorder_r(node, fn):
+  if len(node["children"]):
+    for child in node["children"]:
+      depth_first_postorder_r(child, fn)
+
+  fn(node["value"])
+
+depth_first_preorder_r(a, print)
