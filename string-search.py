@@ -1,23 +1,28 @@
 import timeit
 
+# yo check this out, you can use rolling hashes to make this way faster:
+# https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm
+
 def string_search(substr, str):
   sub_len = len(substr)
 
   idx = 0
   lp = 0
-  in_substr = False # first char in substring
+  substart = None # first char in substring
 
-  while idx < len(str) - (sub_len - lp):
+  len_str = len(str)
+  while idx < len_str - (sub_len - lp):
     if str[idx] == substr[lp]:
       if lp == sub_len - 1:
         return idx - lp
       if lp > 0 and substr[0] == str[idx]:
-        in_substr = True
+        substart = idx
       lp += 1
     else:
-      if in_substr:
-        idx -= lp
-        in_substr = False
+      if substart is not None:
+        idx = substart - 1
+        substart = None
+      #   in_substr = False
       lp = 0
     idx += 1
 
