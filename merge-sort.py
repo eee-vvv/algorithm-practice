@@ -1,12 +1,12 @@
-def merge_srt(self, lst: list) -> list:
+def merge_sort(lst: list) -> list:
     
     length = len(lst)
     
     if length <= 1:
         return lst
     
-    sub_1 = merge_srt(lst[:length//2])
-    sub_2 = merge_srt(lst[length//2:])
+    sub_1 = merge_sort(lst[:length//2])
+    sub_2 = merge_sort(lst[length//2:])
     idx_1 = 0
     idx_2 = 0
     sorted_lst = []
