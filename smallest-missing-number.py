@@ -6,7 +6,7 @@
 # In: [4, 2, 3], Out: 1
 # In: [5, 3, 1], Out: 2
 
-def smallest_missing_num(nums: list) -> int:
+def smallest_missing_num_1(nums: list) -> int:
     length = len(nums)
     lowest = 0
     idx_of_lowest = 0
@@ -29,7 +29,17 @@ def smallest_missing_num(nums: list) -> int:
         #if it's lowest + 1 then we switch it with the number at idx
     return lowest + 1
 
-
+def smallest_missing_num(nums: list)-> int:
+    # turn nums into keys of dict
+    num_table = {}
+    for n in nums:
+        num_table[n] = True
+    i = 1
+    while i in num_table:
+        i += 1
+    return i
+    # itterate through the natural nums and when you get to a key in dict that's missing, return that natural num
+    
     
 
 assert(smallest_missing_num([3,5,3,2]) == 1)

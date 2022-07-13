@@ -12,16 +12,16 @@ def findClosestValueInBst(tree, target):
         if tree.left == None:
             return tree.value
         #recursive:
-        left_tree_closest = findClosestValueInBst(tree.left, target)
-        return tree.value if diff < abs(left_tree_closest - target) else left_tree_closest
+        left_tree_closest = findClosestValueInBst(tree.left, target) # find the closest value in the left tree
+        return tree.value if diff < abs(left_tree_closest - target) else left_tree_closest #compare it to the current node and return whichever is closer
 
     if diff < 0: # current val is smaller than target
         # base case:    
         if tree.right == None:
             return tree.value
         #recursive:
-        right_tree_closest = findClosestValueInBst(tree.right, target)
-        return tree.value if abs(diff) < abs(right_tree_closest - target) else right_tree_closest
+        right_tree_closest = findClosestValueInBst(tree.right, target) # find the closest value in the left tree
+        return tree.value if abs(diff) < abs(right_tree_closest - target) else right_tree_closest #compare it to the current node and return whichever is closer
         #return your value or previous return value depending on which is closer to target
 
 # This is the class of the input tree. Do not edit.
