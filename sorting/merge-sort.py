@@ -1,3 +1,6 @@
+#def merge(arr, start_a, end_a):
+    
+
 def merge_sort(lst: list) -> list:
     
     length = len(lst)

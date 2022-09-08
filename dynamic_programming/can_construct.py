@@ -1,5 +1,5 @@
-def can_construct(targ: str, parts: list[str], mem = {}):
-    mem = {}
+def _can_construct(targ: str, parts: list[str], mem = {}):
+    
     if targ in mem:
         return mem[targ]
     if targ == '':
@@ -11,7 +11,7 @@ def can_construct(targ: str, parts: list[str], mem = {}):
             if targ.index(part) == 0: #ANKI
                 new_targ = targ[len(part):]
                 
-                if can_construct(new_targ, parts, mem):
+                if _can_construct(new_targ, parts, mem):
                     mem[targ] = True
                     return True
                 
@@ -20,6 +20,9 @@ def can_construct(targ: str, parts: list[str], mem = {}):
         
     mem[targ] = False
     return False
+
+def can_construct(targ, parts):
+    return _can_construct(targ, parts, {})
 
 print (can_construct('abcd', ['ab','c','d','abc'])) # True
 print (can_construct('abcd', ['c','abc'])) # False
