@@ -1,12 +1,20 @@
+dfs(self,arr):
+    arr + self
+    for each child:
+    self.child.dfs(arr)
+    return arr
+    
 dfs(self):
-    initialize a q with self as q[0]
-    initialize an output
-    while something in q:
-    append that things name to output
-    add its children to q
-    pop it from q
-
-dfs(self, output):
-    add self to the output
-    run dfs for each children
+    q = deque()
+    output = []
+    while q:
+        self = q.lpop()
+        output.append self.val
+        lappend children to q
     return output
+[0]
+[a,b,c]
+[d,e][f,g][h,i]
+
+[debc]
+    
