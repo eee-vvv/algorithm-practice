@@ -76,17 +76,80 @@ class BST():
         # yes right no left
         # 
         return self
+    
+    def _depth_arr(self, depth, arr = []):
+        l_max_d, r_max_d = (0,0)
+        only_right = True if (self.right and not self.left) else False
+        only_left = True if (self.left and not self.right) else False
+        
+        if only_right:
+            self.left = BST(' ')
+        if only_left:
+            self.right = BST(' ')
+            
+        if self.left:    
+            _, l_max_d = self.left._depth_arr(depth + 1, arr)
+            
+        arr.append((self.value, depth))
+        
+        if self.right:
+            _, r_max_d = self.right._depth_arr(depth + 1, arr)
+            
+        return arr, max([l_max_d, r_max_d, depth])
+        
+    
+    def visualize(self):
+        d_arr, d = self._depth_arr(0)
+        for i in range(d+1):
+            s = ''
+            for node in d_arr:
+                if node[1] == i:
+                    s += str(node[0])
+                else:
+                    s += ' '
+            print(s)
+                    
+            
+        
+        # [ , ,1, , ]
+        # [ ,/, ,\, ,]
+        # [ ,2, ,3, ]
+        # [/, ,\, , /, ,\, , , ]
+        # [4/2\56/3\7]
+        # [1,/,\,2,3,/,\,/,\,4,5,6,7]
+        # 2**2 + 3(2**1) + 3(2**0)
+        # 
+        # 
+        # [[[ ], ,[ ]],1,[[ ], ,[ ]]]
+        # [[[ ],2,[ ]], ,[[ ],3,[ ]]]
+        # [[[4], ,[3]], ,[[5], ,[6]]]
+        # process in order
+        # build array with (value, depth)
+        # itterate through array depth times
+        # printing val if element[depth] == depth, else ' ' for each element
+        
+        pass
+    def _spaces_from_deapth(self,d):
+        total = 2 ** d
+        while d >= 0:
+            total += 3 * (2 ** d)
+            d -= 1
+        return total
 
 bst = BST(5)
 
-for i in [4,6,3,0,8,2,1,9,7]:
-    if i != 5:
-        bst.insert(i)
+for i in [4,6,3,0,8,2,6,3,1,1,7,10,9,11,5]:
+    bst.insert(i)
 
-print('\n*******\n')
-bst.in_order_map(print)
-print('\n*******\n')
-bst.pre_order_map(print)
-print('\n*******\n')
-bst.post_order_map(print)
-print('\n*******\n')
+bst.visualize()
+
+# print(bst._depth_arr(0)[0])
+# print(bst._depth_arr(0)[1])
+
+# print('\n*******\n')
+# bst.in_order_map(print)
+# print('\n*******\n')
+# bst.pre_order_map(print)
+# print('\n*******\n')
+# bst.post_order_map(print)
+# print('\n*******\n')
