@@ -1,3 +1,7 @@
+## given a list of stings (strs),
+## return a list of list where
+## each inner list is a set of strs that are anagrams of eachother
+
 from collections import defaultdict
 
 def groupAnagrams(strs: list[str]) -> list[list[str]]:
