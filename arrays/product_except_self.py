@@ -4,6 +4,16 @@ The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit int
 You must write an algorithm that runs in O(n) time and without using the division operation.
 """
 
+# let's say you have an array and for each element you want to store
+# information about all the other elements except itself in O(n)
+# how to do?
+
+# for each element, the info we want is the info of everything before it + the info of everything after it
+# so we can create prefix and postfix arrays such that for array[i]
+# prefix[i] is an accumulator of all the info before array[i]
+# postfix[i] is an accumulator of all the info after array[i]
+# now all you need to do is combine prefix and postfix for each i, and you're done
+
 ## neetcode's O(1)
 def productExceptSelf_n(nums: list[int]) -> list[int]:
     res = [1] * len(nums)

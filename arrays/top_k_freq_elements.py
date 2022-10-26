@@ -3,6 +3,18 @@
     return the k most frequent elements. 
     You may return the answer in any order.
 """
+
+# you have a hash table of {element:info}
+# but you want to sort elements by their info 
+# e.g. [{info1:element_a}, {info2, element_b, element_d}, {info3:element_c}]
+# so that you can itterate through info in an ordered fashion
+
+# find a way to map info onto the indecies of an array
+# create an array of [], buckets, with length range(smallest info, biggest info(inclusive))
+# use bucket sort!
+# i.e. itterate through the hash table's items, 
+# putting the keys(elements) in the appropriate value bucket in buckets
+
 ## Using Bucket Sort
 def topKFrequent_bs(nums: list[int], k: int) -> list[int]:
 
@@ -23,7 +35,7 @@ def topKFrequent_bs(nums: list[int], k: int) -> list[int]:
 
 ## Using a Heap
 def topKFrequent_h(nums: list[int], k: int) -> list[int]:
-    
+    pass
 
         # output = []
         # hist = defaultdict(int)
